@@ -50,6 +50,9 @@ modules.order
 Module.symvers
 
 # VS Code files
+.vscode/browse.vc.db
+.vscode/browse.vc.db-shm
+.vscode/browse.vc.db-wal
 Mkfile.old
 dkms.conf
 
