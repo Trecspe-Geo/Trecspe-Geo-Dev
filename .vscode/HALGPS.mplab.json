@@ -1,0 +1,111 @@
+{
+    "version": "1.9",
+    "importedFrom": "./",
+    "configurations": [
+        {
+            "name": "default",
+            "id": "conf1",
+            "device": "ATmega4809",
+            "imageType": "application",
+            "imagePath": "./out/HALGPS/default.elf",
+            "tool": "PKOB nano",
+            "packs": [
+                {
+                    "name": "ATmega_DFP",
+                    "vendor": "Microchip",
+                    "version": "3.6.299"
+                }
+            ],
+            "fileSet": "Project files",
+            "toolchain": "default-AVR-GCC",
+            "includeLegacyMacros": true
+        }
+    ],
+    "propertyGroups": [
+        {
+            "name": "default-AVR-GCC",
+            "type": "toolchain",
+            "provider": "microchip.toolchains:avr-gcc@15.1.0",
+            "properties": {
+                "compiler.additional-warnings": true,
+                "compiler.call-prologues": false,
+                "compiler.default-bitfield-type": true,
+                "compiler.default-char-type": true,
+                "compiler.extra-include-directories": ".",
+                "compiler.extra-warnings": false,
+                "compiler.garbage-collect-data": true,
+                "compiler.garbage-collect-functions": true,
+                "compiler.inhibit-all": false,
+                "compiler.make-warnings-into-errors": false,
+                "compiler.no-interrupts": false,
+                "compiler.no-system-directories": false,
+                "compiler.optimization-level": "-O0",
+                "compiler.pack-struct": true,
+                "compiler.save-temps": false,
+                "compiler.short-calls": false,
+                "compiler.short-enums": true,
+                "compiler.strict-ansi": false,
+                "compiler.strict-ansi-errors": false,
+                "compiler.support-ansi": false,
+                "compiler.syntax-only": false,
+                "compiler.undefined-identifier": false,
+                "compiler.verbose": false,
+                "compiler++.additional-warnings": true,
+                "compiler++.call-prologues": false,
+                "compiler++.default-bitfield-type": true,
+                "compiler++.default-char-type": true,
+                "compiler++.extra-include-directories": ".",
+                "compiler++.garbage-collect-data": true,
+                "compiler++.garbage-collect-functions": true,
+                "compiler++.inhibit-all": false,
+                "compiler++.make-warnings-into-errors": false,
+                "compiler++.no-interrupts": false,
+                "compiler++.no-system-directories": false,
+                "compiler++.optimization-level": "-O0",
+                "compiler++.pack-struct": true,
+                "compiler++.preprocess-only": false,
+                "compiler++.save-temps": false,
+                "compiler++.short-calls": false,
+                "compiler++.short-enums": true,
+                "compiler++.strict-ansi": false,
+                "compiler++.strict-ansi-errors": false,
+                "compiler++.support-ansi": false,
+                "compiler++.syntax-only": false,
+                "compiler++.undefined-identifier": false,
+                "compiler++.verbose": false,
+                "assembler.announce-version": false,
+                "assembler.suppress-warnings": false,
+                "archiver.archiver-flags": "-r",
+                "linker.exclude-standard-libraries": false,
+                "linker.extra-lib-directories": ".",
+                "linker.generate-map-file": true,
+                "linker.input-libraries": "m",
+                "linker.no-default-libs": false,
+                "linker.no-shared-libraries": false,
+                "linker.no-startup-files": false,
+                "linker.omit-symbol-information": false,
+                "linker.remove-unused-sections": true,
+                "linker.rodata-writable": false,
+                "linker.v-printf": false,
+                "global.eep": false,
+                "global.external-ram-check": false,
+                "global.hex": true,
+                "global.lss": false,
+                "global.omit-pack-options": false,
+                "global.relax-branches": false,
+                "global.srec": false,
+                "global.usersig": false
+            }
+        }
+    ],
+    "fileSets": [
+        {
+            "name": "Project files",
+            "files": [
+                "Makefile",
+                "*.c"
+            ],
+            "encoding": "ISO-8859-1"
+        }
+    ]
+}
