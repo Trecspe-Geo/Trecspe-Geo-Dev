@@ -6,6 +6,18 @@
             "compileCommands": "${workspaceFolder}/_build/HALGPS/default/compile_commands.json",
             "cStandard": "c11",
             "intelliSenseMode": "gcc-x64",
+            "includePath": [
+                "${workspaceFolder}/Src",
+                "${workspaceFolder}/Src/common",
+                "${workspaceFolder}/Src/hw_desc/inc",
+                "${workspaceFolder}/Src/component/eeprom",
+                "${workspaceFolder}/Src/component/gps",
+                "${workspaceFolder}/Src/component/gsm",
+                "${workspaceFolder}/Src/app/gsm",
+                "${workspaceFolder}/Src/app/main_setup",
+                "${workspaceFolder}/Src/app/OTA",
+                "/home/armel/.mchp_packs/Microchip/ATmega_DFP/3.6.299/include"
+            ],
             "browse": {
                 "path": [
                     "${workspaceFolder}",
