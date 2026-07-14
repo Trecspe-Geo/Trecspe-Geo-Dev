@@ -25,7 +25,7 @@
         {
             "name": "default-AVR-GCC",
             "type": "toolchain",
-            "provider": "microchip.toolchains:avr-gcc@15.1.0",
+            "provider": "microchip.toolchains:avr-gcc@16.1.0",
             "properties": {
                 "compiler.additional-warnings": true,
                 "compiler.call-prologues": false,
@@ -88,7 +88,7 @@
                 "linker.rodata-writable": false,
                 "linker.v-printf": false,
                 "global.eep": false,
-                "global.external-ram-check": false,
+                "global.external-ram-check": true,
                 "global.hex": true,
                 "global.lss": false,
                 "global.omit-pack-options": false,
