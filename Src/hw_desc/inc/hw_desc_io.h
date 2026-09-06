@@ -30,7 +30,7 @@
 *   													                                                                                      *
 ********************************************************************************************************************/
 #include <stdbool.h>
-#include "common.h"
+#include "Src/common/common.h"
 /********************************************************************************************************************
 *													                                                                                          *
 *	                                              D E F I N E S                                                       *
@@ -201,10 +201,10 @@ enum gpioAltFunc
 
   GPIO_ALT_FUNC_ID16,          // TCA0[2:0]
 
-  GPIO_ALT_FUNC_ID16,          // TCB0
-  GPIO_ALT_FUNC_ID16,          // TCB1
-  GPIO_ALT_FUNC_ID16,          // TCB2
-  GPIO_ALT_FUNC_ID16,          // TCB3
+  // GPIO_ALT_FUNC_ID16,          // TCB0
+  // GPIO_ALT_FUNC_ID16,          // TCB1
+  // GPIO_ALT_FUNC_ID16,          // TCB2
+  // GPIO_ALT_FUNC_ID16,          // TCB3
 
 
 
@@ -295,7 +295,7 @@ typedef void (*regFuncbkFunc_t)(eIoDetectionSense_t, ePullUp_t, cbkFunc_t);
 /**
  * structure for definition of pins
  */
-struct __attribute__((packed)) dio_tTag  
+struct dio_tTag  
 {
   eIoPortPin_t     ePin;                    /* The pin to use */
   eIoDirection_t   eDirection;              /* The Direction of the pin */

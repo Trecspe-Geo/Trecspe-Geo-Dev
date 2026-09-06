@@ -5,5 +5,5 @@
         "gdb",
         "mplab-core-da"
     ],
-    "mplab.clangd.compileCommandsDir": "${workspaceFolder}/_build/HALGPS/default"
+    "mplab.clangd.compileCommandsDir": "${workspaceFolder}/_build/HALGPS/TrecspeGeo"
 }

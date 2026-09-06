@@ -3,11 +3,11 @@
     "importedFrom": "./",
     "configurations": [
         {
-            "name": "default",
+            "name": "TrecspeGeo",
             "id": "conf1",
             "device": "ATmega4809",
             "imageType": "application",
-            "imagePath": "./out/HALGPS/default.elf",
+            "imagePath": "./out/TrecspeGeo/TrecspeGeo.elf",
             "tool": "PKOB nano",
             "packs": [
                 {
