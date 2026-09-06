@@ -19,17 +19,9 @@ target_compile_definitions(HALGPS_TrecspeGeo_image_DJF9GR8v PRIVATE
 target_compile_options(HALGPS_TrecspeGeo_image_DJF9GR8v PRIVATE
     -mmcu=atmega4809
     -g
+    -gdwarf-2
     -fpack-struct
     -fshort-enums
     -O0
     -fno-inline
 )
-
-
-# target_compile_options(HALGPS_TrecspeGeo_image_DJF9GR8v PRIVATE
-#     -mmcu=atmega4809
-#     -g
-#     -gdwarf-2
-#     -O0
-#     -fno-inline
-# )

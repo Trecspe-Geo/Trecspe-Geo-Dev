@@ -43,53 +43,59 @@
 #define PORT_E           4
 #define PORT_F           5
 
-#define PA00             0x01
-#define PA01             0x02
-#define PA02             0x03
-#define PA03             0x04
-#define PA04             0x05
-#define PA05             0x06
-#define PA06             0x07
-#define PA07             0x08
+#define PA00             0x01  /* 1  */
+#define PA01             0x02  /* 2  */
+#define PA02             0x03  /* 3  */
+#define PA03             0x04  /* 4  */
+#define PA04             0x05  /* 5  */
+#define PA05             0x06  /* 6  */
+#define PA06             0x07  /* 7  */
+#define PA07             0x08  /* 8  */
 
-#define PB00             0x09
-#define PB01             0x0A
-#define PB02             0x0B
-#define PB03             0x0C
-#define PB04             0x0D
-#define PB05             0x0E
+#define PB00             0x09  /* 9  */
+#define PB01             0x0A  /* 10 */
+#define PB02             0x0B  /* 11 */
+#define PB03             0x0C  /* 12 */
+#define PB04             0x0D  /* 13 */
+#define PB05             0x0E  /* 14 */
+/* PB06             0x0F  /* 15 * - not present on ATmega4809 */
+/* PB07             0x10  /* 16 * - not present on ATmega4809 */
 
-#define PC00             0x0F
-#define PC01             0x10
-#define PC02             0x11
-#define PC03             0x12
-#define PC04             0x13
-#define PC05             0x14
-#define PC06             0x15
-#define PC07             0x16
+#define PC00             0x11  /* 17 */
+#define PC01             0x12  /* 18 */
+#define PC02             0x13  /* 19 */
+#define PC03             0x14  /* 20 */
+#define PC04             0x15  /* 21 */
+#define PC05             0x16  /* 22 */
+#define PC06             0x17  /* 23 */
+#define PC07             0x18  /* 24 */
 
-#define PD00             0x17
-#define PD01             0x18
-#define PD02             0x19
-#define PD03             0x1A
-#define PD04             0x1B
-#define PD05             0x1C
-#define PD06             0x1D
-#define PD07             0x1E
+#define PD00             0x19  /* 25 */
+#define PD01             0x1A  /* 26 */
+#define PD02             0x1B  /* 27 */
+#define PD03             0x1C  /* 28 */
+#define PD04             0x1D  /* 29 */
+#define PD05             0x1E  /* 30 */
+#define PD06             0x1F  /* 31 */
+#define PD07             0x20  /* 32 */
 
-#define PE00             0x1F
-#define PE01             0x20
-#define PE02             0x21
-#define PE03             0x22
+#define PE00             0x21  /* 33 */
+#define PE01             0x22  /* 34 */
+#define PE02             0x23  /* 35 */
+#define PE03             0x24  /* 36 */
+/* PE04             0x25  /* 37 * - not present on ATmega4809 */
+/* PE05             0x26  /* 38 * - not present on ATmega4809 */
+/* PE06             0x27  /* 39 * - not present on ATmega4809 */
+/* PE07             0x28  /* 40 * - not present on ATmega4809 */
 
-#define PF00             0x23
-#define PF01             0x24
-#define PF02             0x25
-#define PF03             0x26
-#define PF04             0x27
-#define PF05             0x28
-#define PF06             0x29
-#define PF07             0x2A
+#define PF00             0x29  /* 41 */
+#define PF01             0x2A  /* 42 */
+#define PF02             0x2B  /* 43 */
+#define PF03             0x2C  /* 44 */
+#define PF04             0x2D  /* 45 */
+#define PF05             0x2E  /* 46 */
+#define PF06             0x2F  /* 47 */
+#define PF07             0x30  /* 48 */
 
 /********************************************************************************************************************
 *													                                                                                          *

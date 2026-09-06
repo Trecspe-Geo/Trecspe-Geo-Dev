@@ -12,13 +12,9 @@ int main(void)
 
     sDio_t sDigIO = {0};  // Initialize the sDio_t structure to zero
 
-    vInitPin(&sDigIO, IO_PORT_A_PIN_00, IO_DIR_OUTPUT,PULL_NONE);
+    vInitPin(&sDigIO, IO_PORT_D_PIN_00, IO_DIR_OUTPUT,PULL_NONE); // Initialize the pin as output with no pull-up resistor
 
-
-    // if (sDigIO.pfvLevelOn != NULL)
-    // {
-    //     sDigIO.pfvLevelOn();
-    // }
+    sDigIO.pfvLevelOn();  // Set the pin to high
 
     while (1) 
     {

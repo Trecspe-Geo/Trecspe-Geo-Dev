@@ -513,7 +513,7 @@ static void vComputePortAndMaskFromPin(uint8_t *u8Mask, uint8_t *u8Port, eIoPort
   u8Index     = (uint8_t)(ePin - ONE);                                         // Get the index from the pin value
 	u8PortVal   = (uint8_t)(u8Index >> IO_PORT_PIN_OFFSET);                      // Get the port from the index value
   u8Bit       = (uint8_t)(u8Index BITAND IO_PORT_PIN_MSK);                     // Get the bit from the index value
-	u8MaskVal   = (uint8_t)(IO_MASK << (u8Index - 1));                           // Get the mask from the bit value
+	u8MaskVal   = (uint8_t)(IO_MASK << (u8Bit));                                 // Get the mask from the bit value
 
 
   *u8Mask = u8MaskVal;                                                          // Return the mask value
@@ -555,7 +555,7 @@ static void vPinSet(eIoPortPin_t ePin)
 			break;  
     
     case IO_PORT_E:
-      PORTF.OUTSET = u8Mask;
+      PORTE.OUTSET = u8Mask;
 			break;  
 
     case IO_PORT_F:
@@ -603,7 +603,7 @@ static void vPinClear(eIoPortPin_t ePin)
 			break;  
     
     case IO_PORT_E:
-      PORTF.OUTCLR = u8Mask;
+      PORTE.OUTCLR = u8Mask;
 			break;  
 
     case IO_PORT_F:
@@ -699,7 +699,7 @@ static bool bPinRead(eIoPortPin_t ePin)
 			break;  
     
     case IO_PORT_E:
-      return ((PORTF.IN & u8Mask) == IO_LEVEL_HIGH);
+      return ((PORTE.IN & u8Mask) == IO_LEVEL_HIGH);
 			break;  
 
     case IO_PORT_F:
@@ -778,14 +778,14 @@ static void vPinDirInput(eIoPortPin_t ePin, ePullUp_t ePull)
 			break;  
     
     case IO_PORT_E:
-      PORTF.DIRCLR = u8Mask;
+      PORTE.DIRCLR = u8Mask;
       if (ePull == PULL_NONE)
       {
-        PORTF.PIN0CTRL &= ~u8Mask; // Disable pull-up resistor
+        PORTE.PIN0CTRL &= ~u8Mask; // Disable pull-up resistor
       }
       else
       {
-        PORTF.PIN0CTRL |= u8Mask; // Enable pull-up resistor
+        PORTE.PIN0CTRL |= u8Mask; // Enable pull-up resistor
       }
 			break;  
 
@@ -841,7 +841,7 @@ static void vPinDirOutput(eIoPortPin_t ePin)
 			break;  
     
     case IO_PORT_E:
-      PORTF.DIRSET = u8Mask;
+      PORTE.DIRSET = u8Mask;
 			break;  
 
     case IO_PORT_F:
@@ -1807,7 +1807,6 @@ static void vSetPinFunc(sDio_t*  psDigIO)
 	switch(psDigIO->ePin)
 	{
     case PA00:
-    // vSetOnPA00();
       psDigIO->pfvLevelOn   = vSetOnPA00;
       psDigIO->pfvLevelOff  = vSetOffPA00;
       psDigIO->pfvToggle    = vTogglePA00;
