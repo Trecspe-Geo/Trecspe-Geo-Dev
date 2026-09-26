@@ -10,12 +10,20 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Focus-Cameroon%20%7C%20Low%20%2F%20No%20coverage-2E8B57?style=flat-square" alt="Cameroon"/>
   <img src="https://img.shields.io/badge/Stack-AVR--GCC%20%7C%20CMake%20%7C%20MPLAB-6A5ACD?style=flat-square" alt="Toolchain"/>
-  <img src="https://img.shields.io/badge/Links-GSM%20%7C%20MQTT%20%7C%20Modules-FF8C00?style=flat-square" alt="Connectivity"/>
+  <img src="https://img.shields.io/badge/Status-Early%20development-F4A261?style=flat-square" alt="Early development"/>
 </p>
 
-Low-level **embedded IoT firmware** for **Trecspe Geo**.
+**Trecspe Geo** is a public embedded/IoT firmware portfolio for field devices that must stay useful in **Cameroon** where cellular coverage is weak or absent.
 
-Built for devices that must keep working in **hard field conditions** across **Cameroon** — including places with **weak or no cellular coverage**, using **MCU + modules (GSM / radio) + MQTT** when the network is back.
+| | |
+|--|--|
+| **Platform** | AVR **ATmega4809**, register-level drivers |
+| **Language** | C, with an object-oriented style (structs + function pointers) |
+| **Toolchain** | AVR-GCC, CMake, MPLAB X / VS Code |
+| **Status** | Early development — digital IO HAL and board bring-up are in tree; GSM, MQTT, and product logic are the intended direction and are **not implemented yet** |
+| **License** | Proprietary, All Rights Reserved ([`LICENSE`](LICENSE)) — this is **not** an open-source project |
+
+The repository is public so engineers and recruiters can read the architecture and code. Reading it here does not grant a license to reuse the libraries. See [License](#license).
 
 ---
 
@@ -29,13 +37,25 @@ Design and implement firmware that:
 - **Stores data offline** when the network is unavailable, then syncs later
 - Stays robust on power, RF, and long unattended deployments
 
-Same toolbox (MCU, GSM module, MQTT, sensors, OOP-in-C drivers) can power many products — not one single application.
+Same toolbox (MCU, GSM module, MQTT, sensors, OOP-in-C drivers) can power many products — not one single application. Those links and protocols are the design target. They are not present as drivers in this repository today.
+
+---
+
+## Current status
+
+What is in the tree now:
+
+- `Src/hw_desc/` — digital IO library: pin objects, function-pointer methods, direct AVR port registers
+- `main.c` — bring-up that initializes one output pin and toggles it
+- `cmake/HALGPS/TrecspeGeo/user.cmake` — build hook so MPLAB/CMake compiles the IO source with the same struct ABI flags as the application
+
+What is not in the tree yet: GSM/modem drivers, MQTT client, offline storage, and a finished product application.
 
 ---
 
 ## What you can build with this stack
 
-Your tools: **MCU (AVR)** · **GSM module** · **optional location module** · **MQTT** · **GPIO/sensors** · **offline store-and-forward**.
+Intended product directions for this hardware class: **MCU (AVR)** · **GSM module** · **optional location module** · **MQTT** · **GPIO/sensors** · **offline store-and-forward**.
 
 | Product idea | Why it fits Cameroon / low coverage |
 |--------------|-------------------------------------|
@@ -48,14 +68,16 @@ Your tools: **MCU (AVR)** · **GSM module** · **optional location module** · *
 | **Wildlife / livestock collar (low rate)** | Rare uplinks to save battery; store tracks offline |
 | **Border / depot geofence logger** | Enter/leave events buffered, flushed over GSM/MQTT |
 
-### Innovative references (same class of tools)
+### References in the same class of tools
 
-- **Emergency alert + tracking over MQTT/GSM** — ESP32 + A9G-style GSM/GPS module, SOS SMS + MQTT ([IEEE ICTMIM 2025](https://doi.org/10.1109/ictmim65579.2025.10987939))
-- **Hydro-Orbit** — solar, sensors, **MQTT**, offline-friendly farm irrigation ([GitHub](https://github.com/kawacukennedy/hydro_orbit))
-- **Smart Irri-Kit** — MCU + **GSM**, soil moisture, solar irrigation (Makerere / field Africa research)
-- **Long-life asset trackers** — MCU + GSM module + motion wake + cloud/MQTT-style backends (e.g. industrial GAT designs)
+These are external projects, not part of this repository. They are listed only as technical context:
 
-Use them as **inspiration only** — this repo’s code stays proprietary (see License).
+- **Emergency alert + tracking over MQTT/GSM** — ([IEEE ICTMIM 2025](https://doi.org/10.1109/ictmim65579.2025.10987939))
+- **Hydro-Orbit** — sensors and MQTT for irrigation ([GitHub](https://github.com/kawacukennedy/hydro_orbit))
+- **Smart Irri-Kit** — MCU and GSM irrigation work associated with Makerere field research
+- Long-life asset devices that sleep and uplink over GSM when coverage returns
+
+Use them as **inspiration only**. This repository’s code stays under its stated proprietary license.
 
 ---
 
@@ -88,20 +110,22 @@ Predictable timing, power, and debug on the metal.
 | `Src/hw_desc/` | OOP-in-C IO library + register access |
 | `cmake/HALGPS/TrecspeGeo/` | CMake / MPLAB project customization (`user.cmake`) |
 | `Makefile` / `nbproject/` | MPLAB build support |
+| `CONTRIBUTING.md` | How to report issues and propose changes |
 | `LICENSE` | Full proprietary license text |
 
 ---
 
 ## Setup
 
+The repository is public. You can clone it to inspect and try the current bring-up build. That does not change the [license](#license).
+
 ### 1. Requirements
 
-- **Authorized** access to this private repository
 - [MPLAB X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide) (or VS Code + MPLAB / AVR extensions)
 - **AVR-GCC** toolchain for `atmega4809`
 - Microchip **ATmega_DFP** pack
-- Debug probe (Curiosity / SNAP / ICE, etc.)
-- Optional for full product tests: **GSM module**, MQTT broker access, sensors
+- Debug probe (Curiosity / SNAP / ICE, etc.) if you flash hardware
+- Optional later, when those drivers exist: **GSM module**, MQTT broker access, sensors
 
 ### 2. Clone
 
@@ -161,14 +185,27 @@ if (sDigIO.pfvLevelOn != NULL)
 }
 ```
 
+There is no automated test suite in this repository yet. Hardware check is: the selected pin toggles as driven by `main.c` or the snippet above.
+
 ---
 
-## Contributing (internal team)
+## Reporting bugs and proposals
 
-- Feature branches, clear commits  
-- Hardware-test IO, modem, MQTT, storage, power changes  
-- Keep compile flags consistent across shared structs  
-- Pull request before merge  
+- **Bugs, build failures, and hardware notes:** open a [GitHub issue](https://github.com/Trecspe-Geo/Trecspe-Geo-Dev/issues) (bug report template).
+- **Feature or architecture ideas:** open an issue with the proposal or architecture template **before** a large pull request.
+- **Direct contact:** [kamdema86@gmail.com](mailto:kamdema86@gmail.com)
+
+---
+
+## Contributions
+
+Feedback, bug reports, architectural suggestions and pull requests are welcome.
+
+Before submitting a pull request, please read [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
+This project is currently maintained as a public portfolio/development project. The source code remains under its stated license.
+
+Participation (issues, discussions, or a pull request) does not grant any right to use, copy, redistribute, or sublicense the existing source beyond what [`LICENSE`](LICENSE) already permits.
 
 ---
 
@@ -176,5 +213,8 @@ if (sDigIO.pfvLevelOn != NULL)
 
 * [Proprietary — All Rights Reserved](LICENSE)
 
-This project is **not** open source.  
-Full terms: [`LICENSE`](LICENSE). Unauthorized use or reuse of the libraries is prohibited.
+This project is **not** open source.
+
+The source is published so it can be inspected. [`LICENSE`](LICENSE) still reserves all rights. Without prior written permission you may not reuse the libraries or drivers in another product or project.
+
+Licensing questions: [kamdema86@gmail.com](mailto:kamdema86@gmail.com).
